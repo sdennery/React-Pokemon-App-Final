@@ -7,18 +7,30 @@ import Types from "../models/Types";
 import formatType from "../helpers/format-type";
 import { useHistory } from "react-router-dom";
 
+/**
+ * Declaration of Type
+ */
 type Field = {
     value?: any,
     error?: string,
     isValid?: boolean
 }
 
+/**
+ * Declaration of form type
+ */
 type FormTypes = {
     types: Field
 }
 
+/**
+ * This function component allows to retrieve a list of pokemons in a page.
+ * 
+ * @returns PokemonList
+ */
 const PokemonList: FunctionComponent = () => {
 
+    // State Hook
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
     const [nbElements, setNbElements] = useState<number>(25);
     const [loading, setLoading] = useState<boolean>(false);
@@ -34,7 +46,7 @@ const PokemonList: FunctionComponent = () => {
         types: { value: types, isValid: true }
     })
 
-
+    // Effect Hook
     useEffect(() => {
         const fetchTypeData = async () => {
             setLoading(true);
@@ -60,12 +72,18 @@ const PokemonList: FunctionComponent = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    /**
+     * This function allows to load new pokemons by scrolling in the bottom page.
+     */
     const handleScroll = async () => {
         if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
             setNbElements((prev) => prev + 25);
         }
     };
 
+    /**
+     * This function allows to have access to the generation form.
+     */
     const filterByGeneration = () => {
         if (hideGeneration) {
             setHideGeneration(false);
@@ -75,6 +93,9 @@ const PokemonList: FunctionComponent = () => {
         setHideTypes(false);
     }
 
+    /**
+     * This function allows to have access to the types form.
+     */
     const filterByTypes = () => {
         if (hideTypes) {
             setHideTypes(false);
@@ -88,12 +109,18 @@ const PokemonList: FunctionComponent = () => {
         setGeneration(+e.target.value);
     }
 
+    /**
+     * This function allows to submit the generation form.
+     */
     const handleGenerationSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         getPokemonsByGeneration();
         setIsFiltered(false);
     }
 
+    /**
+     * This function allows to get the pokemons by generations.
+     */
     const getPokemonsByGeneration = async () => {
         setLoading(true);
         setPokemons([]);
@@ -131,12 +158,18 @@ const PokemonList: FunctionComponent = () => {
         setFormTypes({ ...formTypes, ...{ types: newField } });
     }
 
+    /**
+     * This function allows to submit the type form.
+     */
     const handleTypeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         getPokemonsByTypes();
         setIsFiltered(false);
     }
 
+    /**
+     * This function allows to submit the reset form.
+     */
     const handleResetSubmit = async () => {
         setLoading(true);
         setPokemons([]);
@@ -145,6 +178,9 @@ const PokemonList: FunctionComponent = () => {
         setIsFiltered(true);
     }
 
+    /**
+     * This function allows to get the pokemons by type.
+     */
     const getPokemonsByTypes = async () => {
         setLoading(true);
         setPokemons([]);

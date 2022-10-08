@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param type 
+ * @return a specific type with his color.
+ */
 const formatType = (type: string): string => {
     let color: string;
 

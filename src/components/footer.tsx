@@ -1,7 +1,11 @@
 import React, { FunctionComponent } from "react";
 import { BsGithub, BsTwitter } from "react-icons/bs";
 
-
+/**
+ * This function component allows to return the footer bloc.
+ * 
+ * @returns Footer
+ */
 const Footer: FunctionComponent = () => {
 
     return (

@@ -3,26 +3,12 @@ import { Link } from "react-router-dom";
 import Pokemon from "../models/Pokemon";
 import PokemonService from "../services/pokemon-service";
 
+/**
+ * This function component allows to return the header bloc.
+ * 
+ * @returns Header
+ */
 const Header: FunctionComponent = () => {
-
-    const [term, setTerm] = useState<string>('');
-    const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-    const [result, setResult] = useState<Pokemon[]>([]);
-
-    const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const term = e.target.value;
-        setTerm(term);
-
-        if (term.length <= 4) {
-            setPokemons([]);
-            return;
-        }
-
-        await PokemonService.getListPokemon(1000).then(pokemon => setResult(pokemon));
-        const filteredList = result.filter(el => el.name.toLowerCase().includes(term.toLowerCase()));
-        setPokemons(filteredList.slice(0, 10));
-    }
-
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded">

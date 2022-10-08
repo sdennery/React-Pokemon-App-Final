@@ -4,10 +4,19 @@ import formatType from "../helpers/format-type";
 import Pokemon from "../models/Pokemon";
 import "./pokemon-card.css"
 
+/**
+ * The property "pokemon" must be filled.
+ */
 type Props = {
     pokemon: Pokemon,
 };
 
+/**
+ * This function component allows to retrieve main information regarding a specific pokemon.
+ * 
+ * @param param0 pokemon
+ * @returns PokemonCard
+ */
 const PokemonCard: FunctionComponent<Props> = ({ pokemon }) => {
 
     return (

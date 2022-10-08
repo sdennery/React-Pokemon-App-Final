@@ -36,7 +36,6 @@ export default class Pokemon {
         apiPreEvolution: string = "",
         apiResistancesWithAbilities: Array<Resistance> = []
     ) {
-        // 3. Initialisation des stats d'un pokémons.
         this.id = id;
         this.pokedexId = pokedexId;
         this.name = name;

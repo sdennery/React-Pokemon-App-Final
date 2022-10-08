@@ -1,6 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-  
+
+/**
+ * This function component allows to have access to the page not found.
+ * 
+ * @returns PageNotFound
+ */
 const PageNotFound: FunctionComponent = () => {
   
   return (

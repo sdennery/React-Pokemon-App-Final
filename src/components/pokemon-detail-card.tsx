@@ -2,13 +2,21 @@ import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import formatType from "../helpers/format-type";
 import Pokemon from "../models/Pokemon";
-import Evolution from "../models/ResistanceModifyingAbility";
 import PokemonLoader from "./pokemon-loader";
 
+/**
+ * The property "pokemon" must be filled.
+ */
 type Props = {
   pokemon: Pokemon,
 };
 
+/**
+ * This function component allows to retrieve all information regarding a specific pokemon.
+ * 
+ * @param param0 pokemon
+ * @returns PokemonDetailCard
+ */
 const PokemonDetailCard: FunctionComponent<Props> = ({ pokemon }) => {
 
   return (
