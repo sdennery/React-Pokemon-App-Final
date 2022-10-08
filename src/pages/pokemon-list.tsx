@@ -22,11 +22,12 @@ const PokemonList: FunctionComponent = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
     const [nbElements, setNbElements] = useState<number>(25);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isFiltered, setIsFiltered] = useState<boolean>(true);
     const [pokemonTypes, setPokemonTypes] = useState<Types[]>([]);
     const [generationsList] = useState<string[]>(["Genération 1", "Genération 2", "Genération 3", "Genération 4", "Genération 5", "Genération 6", "Genération 7", "Genération 8"]);
     const [hideGeneration, setHideGeneration] = useState<boolean>(false);
     const [hideTypes, setHideTypes] = useState<boolean>(false);
-    const [generation, setGeneration] = useState<number>(0);
+    const [generation, setGeneration] = useState<number>(1);
     const [types] = useState<Array<string>>([]);
 
     const [formTypes, setFormTypes] = useState<FormTypes>({
@@ -45,9 +46,11 @@ const PokemonList: FunctionComponent = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
-            await PokemonService.getListPokemon(nbElements).then((pokemons) => { setPokemons(pokemons) });
-            setLoading(false);
+            if (isFiltered) {
+                setLoading(true);
+                await PokemonService.getListPokemon(nbElements).then((pokemons) => { setPokemons(pokemons) });
+                setLoading(false);
+            }
         }
         fetchData();
     }, [nbElements]);
@@ -88,6 +91,7 @@ const PokemonList: FunctionComponent = () => {
     const handleGenerationSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         getPokemonsByGeneration();
+        setIsFiltered(false);
     }
 
     const getPokemonsByGeneration = async () => {
@@ -130,6 +134,15 @@ const PokemonList: FunctionComponent = () => {
     const handleTypeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         getPokemonsByTypes();
+        setIsFiltered(false);
+    }
+
+    const handleResetSubmit = async () => {
+        setLoading(true);
+        setPokemons([]);
+        await PokemonService.getListPokemon(25).then((pokemons) => setPokemons(pokemons));
+        setLoading(false);
+        setIsFiltered(true);
     }
 
     const getPokemonsByTypes = async () => {
@@ -211,6 +224,11 @@ const PokemonList: FunctionComponent = () => {
                                     </div>
                                 </form>
                             </div>}
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <button type="button" className="btn btn-primary" style={{ "width": "255px", "marginTop": "10px" }} onClick={() => handleResetSubmit()}>Reset le filtre</button>
                     </div>
                 </div>
                 <br />

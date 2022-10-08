@@ -12,7 +12,7 @@ const PokemonCard: FunctionComponent<Props> = ({ pokemon }) => {
 
     return (
         <div className="col s6 m4 zoom" key={pokemon.id}>
-            <div className="card" style={{"maxWidth" : "205px"}}>
+            <div className="card">
                 <img src={pokemon.image} className="card-img-top" alt={pokemon.name} />
                 <div className="card-body">
                     <h5 className="card-title"><b>{pokemon.name}</b></h5>
