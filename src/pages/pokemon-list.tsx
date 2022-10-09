@@ -5,7 +5,6 @@ import PokemonCard from "../components/pokemon-card";
 import PokemonLoader from "../components/pokemon-loader";
 import Types from "../models/Types";
 import formatType from "../helpers/format-type";
-import { useHistory } from "react-router-dom";
 
 /**
  * Declaration of Type

@@ -1,8 +1,6 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import Pokemon from "../models/Pokemon";
-import PokemonService from "../services/pokemon-service";
-
+import "./header.css";
 /**
  * This function component allows to return the header bloc.
  * 
@@ -13,7 +11,7 @@ const Header: FunctionComponent = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded">
             <div className="col-12">
-                <Link to="/"><img src="./img/Pokédex_logo.png" alt={"Pokédex"} style={{ width: '105px' }} /></Link>
+                <Link to="/"><img src="./img/Pokédex_logo.png" className="logo" alt={"Pokédex"} /></Link>
             </div>
         </nav>
     )

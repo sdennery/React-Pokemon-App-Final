@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import formatType from "../helpers/format-type";
 import Pokemon from "../models/Pokemon";
-import "./pokemon-card.css"
+import "./pokemon-card.css";
 
 /**
  * The property "pokemon" must be filled.
